@@ -1,3 +1,6 @@
 name = "grafly-landing"
 compatibility_date = "2024-12-01"
-pages_build_output_dir = "artifacts/grafly-landing/dist/public"
+
+[assets]
+directory = "./artifacts/grafly-landing/dist/public"
+not_found_handling = "single-page-application"

@@ -189,7 +189,7 @@ const GAME_CARDS: Array<{
     getTitle: (t) => t.games.colorMatch.title,
     getBody: (t) => t.games.colorMatch.body,
     Demo: ColorMatch,
-    pattern: { color: "rgba(255,255,255,0.9)", size: "240px", maxOpacity: 0.5, fadeFrom: "tr", offsetX: "20px" },
+    pattern: { color: "rgba(255,255,255,0.9)", size: "240px", maxOpacity: 0.3, fadeFrom: "tr", offsetX: "20px" },
   },
   {
     bg: "linear-gradient(160deg, #21263F 0%, #2D3354 100%)",
@@ -204,7 +204,7 @@ const GAME_CARDS: Array<{
     getTitle: (t) => t.games.paletteBuilder.title,
     getBody: (t) => t.games.paletteBuilder.body,
     Demo: PaletteBuilder,
-    pattern: { color: "rgba(255,255,255,0.9)", size: "200px", maxOpacity: 0.55, fadeFrom: "bl", offsetX: "-10px", offsetY: "20px" },
+    pattern: { color: "rgba(255,255,255,0.9)", size: "200px", maxOpacity: 0.3, fadeFrom: "bl", offsetX: "-10px", offsetY: "20px" },
   },
   {
     bg: "#00A4FA",
@@ -212,7 +212,7 @@ const GAME_CARDS: Array<{
     getTitle: (t) => t.games.dragMatch.title,
     getBody: (t) => t.games.dragMatch.body,
     Demo: DragMatch,
-    pattern: { color: "rgba(255,255,255,0.95)", size: "260px", maxOpacity: 0.6, fadeFrom: "br", offsetY: "10px" },
+    pattern: { color: "rgba(255,255,255,0.95)", size: "260px", maxOpacity: 0.3, fadeFrom: "br", offsetY: "10px" },
   },
 ];
 

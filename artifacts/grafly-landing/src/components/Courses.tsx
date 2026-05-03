@@ -9,13 +9,13 @@ const COURSE_CONFIG: Array<{
   pattern: { color: string; size: string; maxOpacity: number; fadeFrom: FadeDir; offsetX?: string; offsetY?: string };
 }> = [
   { bg: "#00A4FA", text: "#21263F", icon: Shapes,
-    pattern: { color: "rgba(255,255,255,0.95)", size: "240px", maxOpacity: 0.6, fadeFrom: "br", offsetX: "0px" } },
+    pattern: { color: "rgba(255,255,255,0.95)", size: "240px", maxOpacity: 0.3, fadeFrom: "br", offsetX: "0px" } },
   { bg: "#7B5CFF", text: "#FFFFFF", icon: Palette,
-    pattern: { color: "rgba(255,255,255,0.85)", size: "200px", maxOpacity: 0.5, fadeFrom: "tl", offsetX: "20px", offsetY: "10px" } },
+    pattern: { color: "rgba(255,255,255,0.85)", size: "200px", maxOpacity: 0.3, fadeFrom: "tl", offsetX: "20px", offsetY: "10px" } },
   { bg: "#FF7BD0", text: "#21263F", icon: Type,
-    pattern: { color: "rgba(255,255,255,0.9)", size: "220px", maxOpacity: 0.55, fadeFrom: "tr", offsetX: "-20px" } },
+    pattern: { color: "rgba(255,255,255,0.9)", size: "220px", maxOpacity: 0.3, fadeFrom: "tr", offsetX: "-20px" } },
   { bg: "#E3ED43", text: "#21263F", icon: LayoutGrid,
-    pattern: { color: "rgba(255,255,255,0.9)", size: "180px", maxOpacity: 0.55, fadeFrom: "bl", offsetY: "30px" } },
+    pattern: { color: "rgba(255,255,255,0.9)", size: "180px", maxOpacity: 0.3, fadeFrom: "bl", offsetY: "30px" } },
 ];
 
 export default function Courses() {

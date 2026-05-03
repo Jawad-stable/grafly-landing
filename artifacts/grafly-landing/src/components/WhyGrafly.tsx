@@ -10,12 +10,12 @@ const CARD_COLORS: Array<{
   pattern?: { color: string; size: string; maxOpacity: number; fadeFrom: FadeDir; offsetX?: string; offsetY?: string };
 }> = [
   { bg: "#FF7BD0", text: "#21263F", icon: Gamepad2,
-    pattern: { color: "rgba(255,255,255,0.9)", size: "260px", maxOpacity: 0.55, fadeFrom: "tr", offsetX: "30px", offsetY: "-20px" } },
+    pattern: { color: "rgba(255,255,255,0.9)", size: "260px", maxOpacity: 0.3, fadeFrom: "tr", offsetX: "30px", offsetY: "-20px" } },
   { bg: "#21263F", text: "#F5F6FA", icon: BookOpen },
   { bg: "#E3ED43", text: "#21263F", icon: Coffee,
-    pattern: { color: "rgba(255,255,255,0.9)", size: "200px", maxOpacity: 0.55, fadeFrom: "bl", offsetX: "-10px", offsetY: "20px" } },
+    pattern: { color: "rgba(255,255,255,0.9)", size: "200px", maxOpacity: 0.3, fadeFrom: "bl", offsetX: "-10px", offsetY: "20px" } },
   { bg: "#00A4FA", text: "#21263F", icon: Globe,
-    pattern: { color: "rgba(255,255,255,0.95)", size: "280px", maxOpacity: 0.6, fadeFrom: "tl", offsetX: "10px" } },
+    pattern: { color: "rgba(255,255,255,0.95)", size: "280px", maxOpacity: 0.3, fadeFrom: "tl", offsetX: "10px" } },
   { bg: "#F5F6FA", text: "#21263F", icon: TrendingUp, border: "2px solid #21263F" },
 ];
 

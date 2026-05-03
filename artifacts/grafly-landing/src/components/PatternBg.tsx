@@ -14,6 +14,8 @@ interface PatternBgProps {
   size?: string;
   /** Opacity of the brightest part of the gradient (the rest fades to 0) */
   maxOpacity?: number;
+  /** Whether to blend seamlessly with the background (uses screen blend) */
+  seamless?: boolean;
   /** Direction the pattern fades AWAY from (i.e. opaque side) */
   fadeFrom?: FadeDir;
   /** Optional rotation of the tile */
@@ -36,12 +38,13 @@ interface PatternBgProps {
 export default function PatternBg({
   color = "rgba(255,255,255,0.9)",
   size = "320px",
-  maxOpacity = 0.6,
+  maxOpacity = 0.3,
   fadeFrom = "tl",
   rotate = 0,
   offsetX = "0px",
   offsetY = "0px",
-  fadeStop = "70%",
+  fadeStop = "75%",
+  seamless = true,
   className = "",
   style = {},
 }: PatternBgProps) {
@@ -55,6 +58,7 @@ export default function PatternBg({
       style={{
         WebkitMaskImage: gradientMask,
         maskImage: gradientMask,
+        mixBlendMode: seamless ? "soft-light" : undefined,
         ...style,
       }}
     >

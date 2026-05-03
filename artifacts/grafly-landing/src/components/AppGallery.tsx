@@ -5,11 +5,11 @@ import Squiggle from "./Squiggle";
 import PatternBg from "./PatternBg";
 
 type FadeDir = "tl" | "tr" | "bl" | "br";
-const FEATURED_PATTERN = { color: "rgba(255,255,255,0.92)", size: "380px", maxOpacity: 0.55, fadeFrom: "br" as FadeDir, offsetX: "20px" };
+const FEATURED_PATTERN = { color: "rgba(255,255,255,0.92)", size: "380px", maxOpacity: 0.3, fadeFrom: "br" as FadeDir, offsetX: "20px" };
 const SUPPORTING_PATTERNS: Array<{ color: string; size: string; maxOpacity: number; fadeFrom: FadeDir; offsetX?: string; offsetY?: string } | null> = [
-  { color: "rgba(255,255,255,0.92)", size: "240px", maxOpacity: 0.55, fadeFrom: "tl", offsetX: "10px" },
+  { color: "rgba(255,255,255,0.92)", size: "240px", maxOpacity: 0.3, fadeFrom: "tl", offsetX: "10px" },
   null,
-  { color: "rgba(255,255,255,0.92)", size: "200px", maxOpacity: 0.5, fadeFrom: "bl", offsetX: "-20px", offsetY: "10px" },
+  { color: "rgba(255,255,255,0.92)", size: "200px", maxOpacity: 0.3, fadeFrom: "bl", offsetX: "-20px", offsetY: "10px" },
   null,
 ];
 

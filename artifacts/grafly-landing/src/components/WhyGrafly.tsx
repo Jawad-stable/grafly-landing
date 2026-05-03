@@ -73,20 +73,6 @@ export default function WhyGrafly() {
                   minHeight: 200,
                 }}
               >
-                {/* Show "correct" mascot on first card */}
-                {i === 0 && (
-                  <div className="absolute -top-4 -end-4 opacity-95 z-10" style={{ filter: "drop-shadow(0 8px 14px rgba(0,0,0,0.2))" }}>
-                    <ImageWithFallback
-                      src="/mascot/correct.png"
-                      alt=""
-                      className="mascot-float object-contain"
-                      fallbackBg="transparent"
-                      fallbackTextColor={text}
-                      style={{ width: 130, height: 130 }}
-                    />
-                  </div>
-                )}
-
                 <div
                   className="w-14 h-14 rounded-2xl flex items-center justify-center relative z-10"
                   style={{ background: `${text}1a` }}

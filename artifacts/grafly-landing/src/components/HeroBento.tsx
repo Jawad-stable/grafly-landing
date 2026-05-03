@@ -156,20 +156,6 @@ export default function HeroBento() {
               gridRow: "1 / 2",
             }}
           >
-            {/* Cool yellow mascot peeks corner */}
-            <div
-              className="absolute -top-4 -end-4 z-0 opacity-90"
-              style={{ filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.18))" }}
-            >
-              <ImageWithFallback
-                src="/mascot/cool_yellow.png"
-                alt=""
-                className="mascot-float object-contain"
-                fallbackBg="transparent"
-                fallbackTextColor="#21263F"
-                style={{ width: 110, height: 110 }}
-              />
-            </div>
             <div className="relative z-10">
               {[
                 { num: t.hero.stat1Number, label: t.hero.stat1Label },

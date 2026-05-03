@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Twitter, Instagram, Linkedin } from "lucide-react";
+import { Twitter, Instagram, Linkedin, Github } from "lucide-react";
 import { useLang } from "@/hooks/useLang";
 import ImageWithFallback from "./ImageWithFallback";
 import Squiggle from "./Squiggle";
@@ -28,106 +28,135 @@ function StoreBadge({ label, icon }: { label: string; icon: "apple" | "google" }
 export default function FooterBento() {
   const { t } = useLang();
 
+  const socials = [
+    { Icon: Twitter, label: "Twitter / X", href: "#" },
+    { Icon: Instagram, label: "Instagram", href: "#" },
+    { Icon: Linkedin, label: "LinkedIn", href: "#" },
+    { Icon: Github, label: "GitHub", href: "#" },
+  ];
+
   return (
-    <footer id="download" aria-label="Footer and download" className="py-20 px-4 sm:px-6">
+    <footer id="download" aria-label="Footer and download" className="pt-20 px-4 sm:px-6 pb-8">
       <div className="max-w-7xl mx-auto">
+        {/* ── Big CTA card ── */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"
+          className="bento-card p-10 md:p-14 flex flex-col md:flex-row items-center gap-10 relative overflow-hidden mb-8"
+          style={{
+            background: "linear-gradient(135deg, #21263F 0%, #2D3354 100%)",
+            color: "#F5F6FA",
+            minHeight: 280,
+          }}
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {/* Main CTA card */}
-          <div
-            className="bento-card md:col-span-2 p-10 md:p-12 flex flex-col sm:flex-row items-center gap-8 relative overflow-hidden"
-            style={{
-              background: "linear-gradient(135deg, #21263F 0%, #2D3354 100%)",
-              color: "#F5F6FA",
-              minHeight: 280,
-            }}
-          >
-            <Squiggle
-              color="#00A4FA"
-              opacity={0.18}
-              variant="loop"
-              width={300}
-              height={100}
-              className="absolute -top-2 start-0"
-            />
+          <Squiggle
+            color="#00A4FA"
+            opacity={0.18}
+            variant="loop"
+            width={300}
+            height={100}
+            className="absolute -top-2 start-0"
+          />
 
-            <div className="relative z-10 flex-1">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#00A4FA] mb-3">
-                — Get the app —
-              </span>
-              <h2
-                className="font-display mb-6"
-                style={{ fontSize: "clamp(32px, 4.5vw, 60px)", letterSpacing: "-0.03em", lineHeight: 1 }}
-              >
-                {t.footer.headline}
-              </h2>
-              <div className="flex flex-wrap gap-3">
-                <StoreBadge label={t.footer.ctaAppStore} icon="apple" />
-                <StoreBadge label={t.footer.ctaPlayStore} icon="google" />
-              </div>
-            </div>
-
-            <div className="shrink-0 relative z-10" style={{ filter: "drop-shadow(0 12px 24px rgba(0,0,0,0.3))" }}>
-              <ImageWithFallback
-                src="/mascot/celebrate.png"
-                alt="Grafly mascot celebrating"
-                className="mascot-float object-contain"
-                fallbackBg="rgba(255,255,255,0.08)"
-                fallbackTextColor="#F5F6FA"
-                style={{ width: 170, height: 190 }}
-              />
+          <div className="relative z-10 flex-1 text-center md:text-start">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#00A4FA] mb-3">
+              — Get the app —
+            </span>
+            <h2
+              className="font-display mb-6"
+              style={{ fontSize: "clamp(32px, 4.5vw, 60px)", letterSpacing: "-0.03em", lineHeight: 1 }}
+            >
+              {t.footer.headline}
+            </h2>
+            <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+              <StoreBadge label={t.footer.ctaAppStore} icon="apple" />
+              <StoreBadge label={t.footer.ctaPlayStore} icon="google" />
             </div>
           </div>
 
-          {/* Social card */}
-          <div
-            className="bento-card p-8 flex flex-col justify-between relative overflow-hidden"
-            style={{ background: "linear-gradient(160deg, #00A4FA 0%, #0090E0 100%)", color: "#21263F" }}
-          >
-            {/* Cool yellow mascot */}
-            <div className="absolute -top-2 -end-2 z-10 opacity-95" style={{ filter: "drop-shadow(0 8px 14px rgba(0,0,0,0.25))" }}>
-              <ImageWithFallback
-                src="/mascot/cool_yellow.png"
-                alt=""
-                className="mascot-float object-contain"
-                fallbackBg="transparent"
-                fallbackTextColor="#21263F"
-                style={{ width: 130, height: 130 }}
-              />
-            </div>
-
-            <p className="font-display text-xl relative z-10 max-w-[60%]" style={{ letterSpacing: "-0.02em" }}>
-              {t.footer.social}
-            </p>
-            <div className="flex items-center gap-3 mt-6 relative z-10">
-              {[
-                { Icon: Twitter, label: "Twitter / X" },
-                { Icon: Instagram, label: "Instagram" },
-                { Icon: Linkedin, label: "LinkedIn" },
-              ].map(({ Icon, label }) => (
-                <a
-                  key={label}
-                  href="#"
-                  className="w-11 h-11 rounded-full flex items-center justify-center hover:bg-[#21263F] hover:text-white hover:-translate-y-0.5 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21263F]"
-                  style={{ background: "rgba(33,38,63,0.15)" }}
-                  aria-label={label}
-                >
-                  <Icon size={20} strokeWidth={2.2} aria-hidden="true" />
-                </a>
-              ))}
-            </div>
+          <div className="shrink-0 relative z-10" style={{ filter: "drop-shadow(0 16px 28px rgba(0,0,0,0.35))" }}>
+            <ImageWithFallback
+              src="/mascot/celebrate.png"
+              alt="Grafly mascot celebrating"
+              className="mascot-float object-contain"
+              fallbackBg="rgba(255,255,255,0.08)"
+              fallbackTextColor="#F5F6FA"
+              style={{ width: 220, height: 240 }}
+            />
           </div>
         </motion.div>
 
-        {/* Copyright */}
-        <p className="text-center text-sm" style={{ opacity: 0.6 }}>
-          {t.footer.copyright}
-        </p>
+        {/* ── Footer link columns ── */}
+        <motion.div
+          className="bento-card p-8 md:p-10 relative overflow-hidden"
+          style={{ background: "var(--color-card)" }}
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, delay: 0.1 }}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-6">
+            {/* Brand column */}
+            <div className="col-span-2 md:col-span-2 flex flex-col gap-4">
+              <ImageWithFallback
+                src="/logo/wordmark_primary.png"
+                alt="Grafly"
+                className="h-7 w-auto object-contain self-start"
+                fallbackBg="transparent"
+                fallbackTextColor="#00A4FA"
+                style={{ maxWidth: 120 }}
+              />
+              <p className="text-sm leading-relaxed max-w-xs" style={{ opacity: 0.7 }}>
+                {t.footer.tagline}
+              </p>
+              <div className="flex items-center gap-2 mt-2">
+                {socials.map(({ Icon, label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    className="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:bg-[#00A4FA] hover:text-white hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00A4FA]"
+                    style={{ background: "color-mix(in srgb, var(--color-foreground) 8%, transparent)" }}
+                    aria-label={label}
+                  >
+                    <Icon size={16} strokeWidth={2.2} aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Link columns */}
+            {t.footer.columns.map((col) => (
+              <div key={col.title} className="flex flex-col gap-3">
+                <h3 className="text-xs font-bold uppercase tracking-[0.15em]" style={{ opacity: 0.5 }}>
+                  {col.title}
+                </h3>
+                <ul className="flex flex-col gap-2.5" role="list">
+                  {col.links.map((link) => (
+                    <li key={link}>
+                      <a
+                        href="#"
+                        className="text-sm font-medium transition-colors hover:text-[#0078BB] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00A4FA] rounded"
+                      >
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom bar */}
+          <div
+            className="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs"
+            style={{ borderTop: "1px solid color-mix(in srgb, var(--color-foreground) 8%, transparent)", opacity: 0.65 }}
+          >
+            <p>{t.footer.copyright}</p>
+            <p className="font-medium">EN · AR · iOS · Android</p>
+          </div>
+        </motion.div>
       </div>
     </footer>
   );

@@ -124,6 +124,21 @@ const en = {
     ctaPlayStore: "Get it on Google Play",
     social: "Follow us for design tips",
     copyright: "© 2025 Grafly. Made with love for designers everywhere.",
+    tagline: "Design fundamentals taught through play.",
+    columns: [
+      {
+        title: "Product",
+        links: ["Features", "Lessons", "Mini-games", "Pricing"],
+      },
+      {
+        title: "Company",
+        links: ["About", "Blog", "Press", "Careers"],
+      },
+      {
+        title: "Support",
+        links: ["FAQ", "Contact", "Privacy", "Terms"],
+      },
+    ],
   },
 } as const;
 

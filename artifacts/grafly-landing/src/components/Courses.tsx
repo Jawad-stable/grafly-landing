@@ -1,11 +1,9 @@
 import { motion } from "framer-motion";
 import { Shapes, Palette, Type, LayoutGrid } from "lucide-react";
 import { useLang } from "@/hooks/useLang";
-import ImageWithFallback from "./ImageWithFallback";
-
 const COURSE_CONFIG = [
   { bg: "#00A4FA", text: "#21263F", icon: Shapes },
-  { bg: "#7B5CFF", text: "#FFFFFF", icon: Palette, mascot: "/mascot/cool_purple.png" },
+  { bg: "#7B5CFF", text: "#FFFFFF", icon: Palette },
   { bg: "#FF7BD0", text: "#21263F", icon: Type },
   { bg: "#E3ED43", text: "#21263F", icon: LayoutGrid },
 ];
@@ -35,7 +33,7 @@ export default function Courses() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {t.courses.list.map((course, i) => {
-            const { bg, text, icon: Icon, mascot } = COURSE_CONFIG[i];
+            const { bg, text, icon: Icon } = COURSE_CONFIG[i];
             return (
               <motion.div
                 key={course.name}
@@ -46,20 +44,6 @@ export default function Courses() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                {/* Color Theory gets the cool_purple mascot */}
-                {mascot && (
-                  <div className="absolute -top-5 -end-4 opacity-95 z-10" style={{ filter: "drop-shadow(0 8px 14px rgba(0,0,0,0.25))" }}>
-                    <ImageWithFallback
-                      src={mascot}
-                      alt=""
-                      className="mascot-float object-contain"
-                      fallbackBg="transparent"
-                      fallbackTextColor={text}
-                      style={{ width: 130, height: 130 }}
-                    />
-                  </div>
-                )}
-
                 <div
                   className="w-12 h-12 rounded-2xl flex items-center justify-center relative z-10"
                   style={{ background: `${text}1f` }}

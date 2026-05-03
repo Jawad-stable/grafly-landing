@@ -1,22 +1,18 @@
 #!/usr/bin/env bash
-# Cloudflare Pages build script for the Grafly monorepo.
-# Set the Cloudflare build command to: bash .cloudflare-build.sh
+# Cloudflare Pages/Workers build script.
+# Cloudflare auto-installs pnpm and runs `pnpm install --frozen-lockfile`
+# BEFORE this script runs, so we only need to build.
 set -euo pipefail
 
 echo "──────────────────────────────────────────────"
-echo "Node version: $(node -v)"
+echo "Node:  $(node -v)"
+echo "pnpm:  $(pnpm -v)"
 echo "──────────────────────────────────────────────"
-
-echo "▶ Installing pnpm 10.26.1 (matches lockfile)…"
-npm install -g pnpm@10.26.1
-
-echo "▶ Installing dependencies…"
-pnpm install --no-frozen-lockfile --prefer-offline
 
 echo "▶ Building grafly-landing…"
 pnpm --filter @workspace/grafly-landing exec vite build
 
 echo "──────────────────────────────────────────────"
-echo "✅ Build complete. Output: artifacts/grafly-landing/dist/public"
+echo "✅ Build complete. Output:"
 ls -la artifacts/grafly-landing/dist/public/
 echo "──────────────────────────────────────────────"

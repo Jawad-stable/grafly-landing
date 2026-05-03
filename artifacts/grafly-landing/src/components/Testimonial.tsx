@@ -64,7 +64,7 @@ export default function Testimonial() {
           </div>
 
           {/* Mascot */}
-          <div className="shrink-0 relative z-10" style={{ filter: "drop-shadow(0 12px 24px rgba(0,0,0,0.25))" }}>
+          <div className="shrink-0 relative z-10" style={{ filter: "drop-shadow(0 0 50px rgba(255,255,255,0.5)) drop-shadow(0 12px 24px rgba(255,255,255,0.22))" }}>
             <ImageWithFallback
               src="/mascot/celebrate.png"
               alt="Grafly mascot celebrating"

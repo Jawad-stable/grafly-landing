@@ -115,7 +115,7 @@ export default function HeroBento() {
             </div>
 
             {/* Mascot */}
-            <div className="absolute bottom-0 end-4 z-20" style={{ filter: "drop-shadow(0 8px 16px rgba(0,0,0,0.2))" }}>
+            <div className="absolute bottom-0 end-4 z-20" style={{ filter: "drop-shadow(0 0 36px rgba(255,255,255,0.5)) drop-shadow(0 8px 16px rgba(255,255,255,0.2))" }}>
               <ImageWithFallback
                 src="/mascot/idle.png"
                 alt="Grafly mascot"

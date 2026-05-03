@@ -109,7 +109,7 @@ export default function AppGallery() {
             {/* The phone — peeks from the bottom of the card */}
             <div
               style={{
-                filter: "drop-shadow(0 30px 50px rgba(0,0,0,0.4))",
+                filter: "drop-shadow(0 0 60px rgba(255,255,255,0.55)) drop-shadow(0 30px 50px rgba(255,255,255,0.25))",
                 transform: "perspective(900px) rotateY(-4deg) rotateX(3deg)",
                 transformOrigin: "bottom center",
                 marginBottom: -40,
@@ -154,7 +154,7 @@ export default function AppGallery() {
                 <div
                   className="ms-auto"
                   style={{
-                    filter: "drop-shadow(0 18px 28px rgba(0,0,0,0.32))",
+                    filter: "drop-shadow(0 0 40px rgba(255,255,255,0.5)) drop-shadow(0 18px 28px rgba(255,255,255,0.22))",
                     transform: `perspective(800px) rotateZ(${card.tilt}deg) rotateY(-4deg)`,
                   }}
                 >

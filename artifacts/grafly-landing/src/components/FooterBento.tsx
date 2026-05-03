@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 import { Twitter, Instagram, Linkedin } from "lucide-react";
 import { useLang } from "@/hooks/useLang";
 import ImageWithFallback from "./ImageWithFallback";
-import Squiggle from "./Squiggle";
+import Squiggle, { SquigglePattern } from "./Squiggle";
 
 function StoreBadge({ label, icon }: { label: string; icon: "apple" | "google" }) {
   return (
     <a
       href="#"
-      className="inline-flex items-center gap-2 bg-white text-[#21263F] px-5 py-3 rounded-full text-sm font-bold hover:bg-[#E3ED43] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      className="inline-flex items-center gap-2 bg-white text-[#21263F] px-5 py-3 rounded-full text-sm font-bold hover:bg-[#E3ED43] hover:-translate-y-0.5 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white shadow-lg"
       aria-label={label}
     >
       {icon === "apple" ? (
@@ -31,7 +31,6 @@ export default function FooterBento() {
   return (
     <footer id="download" aria-label="Footer and download" className="py-20 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
-        {/* Footer bento grid */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"
           initial={{ opacity: 0, y: 32 }}
@@ -41,21 +40,38 @@ export default function FooterBento() {
         >
           {/* Main CTA card */}
           <div
-            className="bento-card md:col-span-2 p-10 flex flex-col sm:flex-row items-center gap-8 relative overflow-hidden"
-            style={{ background: "#21263F", color: "#F5F6FA", minHeight: 240 }}
+            className="bento-card md:col-span-2 p-10 md:p-12 flex flex-col sm:flex-row items-center gap-8 relative overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, #21263F 0%, #2D3354 100%)",
+              color: "#F5F6FA",
+              minHeight: 280,
+            }}
           >
+            <SquigglePattern color="#00A4FA" opacity={0.1} size={70} />
             <Squiggle
-              color="#00A4FA"
-              opacity={0.08}
-              className="absolute -bottom-4 -end-8"
+              color="#FF7BD0"
+              opacity={0.25}
+              variant="loop"
+              width={320}
+              height={110}
+              className="absolute -top-2 left-0"
+            />
+            <Squiggle
+              color="#E3ED43"
+              opacity={0.2}
+              variant="scribble"
               width={280}
-              height={100}
+              height={90}
+              className="absolute -bottom-2 right-0"
             />
 
             <div className="relative z-10 flex-1">
+              <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#00A4FA] mb-3">
+                — Get the app —
+              </span>
               <h2
                 className="font-display mb-6"
-                style={{ fontSize: "clamp(28px, 4vw, 56px)", letterSpacing: "-0.03em" }}
+                style={{ fontSize: "clamp(32px, 4.5vw, 60px)", letterSpacing: "-0.03em", lineHeight: 1 }}
               >
                 {t.footer.headline}
               </h2>
@@ -65,25 +81,49 @@ export default function FooterBento() {
               </div>
             </div>
 
-            <div className="shrink-0 relative z-10">
+            <div className="shrink-0 relative z-10" style={{ filter: "drop-shadow(0 12px 24px rgba(0,0,0,0.3))" }}>
               <ImageWithFallback
                 src="/mascot/celebrate.png"
                 alt="Grafly mascot celebrating"
                 className="mascot-float object-contain"
                 fallbackBg="rgba(255,255,255,0.08)"
                 fallbackTextColor="#F5F6FA"
-                style={{ width: 140, height: 160 }}
+                style={{ width: 170, height: 190 }}
               />
             </div>
           </div>
 
           {/* Social card */}
           <div
-            className="bento-card p-8 flex flex-col justify-between"
-            style={{ background: "#00A4FA", color: "#21263F" }}
+            className="bento-card p-8 flex flex-col justify-between relative overflow-hidden"
+            style={{ background: "linear-gradient(160deg, #00A4FA 0%, #0090E0 100%)", color: "#21263F" }}
           >
-            <p className="font-bold text-lg">{t.footer.social}</p>
-            <div className="flex items-center gap-4 mt-6">
+            <SquigglePattern color="#21263F" opacity={0.08} size={50} />
+            <Squiggle
+              color="#21263F"
+              opacity={0.15}
+              variant="loop"
+              width={200}
+              height={70}
+              className="absolute -bottom-2 -right-4"
+            />
+
+            {/* Cool yellow mascot */}
+            <div className="absolute top-4 end-4 z-10 opacity-95" style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}>
+              <ImageWithFallback
+                src="/mascot/cool_yellow.png"
+                alt=""
+                className="mascot-float object-contain"
+                fallbackBg="transparent"
+                fallbackTextColor="#21263F"
+                style={{ width: 70, height: 70 }}
+              />
+            </div>
+
+            <p className="font-display text-xl relative z-10 max-w-[60%]" style={{ letterSpacing: "-0.02em" }}>
+              {t.footer.social}
+            </p>
+            <div className="flex items-center gap-3 mt-6 relative z-10">
               {[
                 { Icon: Twitter, label: "Twitter / X" },
                 { Icon: Instagram, label: "Instagram" },
@@ -92,11 +132,11 @@ export default function FooterBento() {
                 <a
                   key={label}
                   href="#"
-                  className="w-11 h-11 rounded-full flex items-center justify-center hover:bg-[#21263F] hover:text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21263F]"
-                  style={{ background: "rgba(33,38,63,0.12)" }}
+                  className="w-11 h-11 rounded-full flex items-center justify-center hover:bg-[#21263F] hover:text-white hover:-translate-y-0.5 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21263F]"
+                  style={{ background: "rgba(33,38,63,0.15)" }}
                   aria-label={label}
                 >
-                  <Icon size={20} strokeWidth={2} aria-hidden="true" />
+                  <Icon size={20} strokeWidth={2.2} aria-hidden="true" />
                 </a>
               ))}
             </div>
@@ -104,10 +144,7 @@ export default function FooterBento() {
         </motion.div>
 
         {/* Copyright */}
-        <p
-          className="text-center text-sm"
-          style={{ opacity: 0.5 }}
-        >
+        <p className="text-center text-sm" style={{ opacity: 0.6 }}>
           {t.footer.copyright}
         </p>
       </div>

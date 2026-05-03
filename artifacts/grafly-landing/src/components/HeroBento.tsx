@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 import { useLang } from "@/hooks/useLang";
 import ImageWithFallback from "./ImageWithFallback";
 import PhoneMockup from "./PhoneMockup";
-import Squiggle from "./Squiggle";
+import Squiggle, { SquigglePattern } from "./Squiggle";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -17,7 +18,7 @@ function StoreBadge({ label, icon }: { label: string; icon: "apple" | "google" }
   return (
     <a
       href="#"
-      className="inline-flex items-center gap-2 bg-[#21263F] text-white px-5 py-3 rounded-full text-sm font-bold hover:bg-[#0078BB] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      className="inline-flex items-center gap-2 bg-[#21263F] text-white px-5 py-3 rounded-full text-sm font-bold hover:bg-[#0078BB] hover:-translate-y-0.5 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white shadow-lg"
       aria-label={label}
     >
       {icon === "apple" ? (
@@ -41,9 +42,21 @@ export default function HeroBento() {
     <section
       id="hero"
       aria-label="Hero"
-      className="min-h-screen pt-20 pb-12 px-4 sm:px-6 flex items-center"
+      className="min-h-screen pt-20 pb-12 px-4 sm:px-6 flex items-center relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto w-full">
+      {/* Floating decorative blobs */}
+      <div
+        className="absolute top-32 -left-20 w-72 h-72 rounded-full opacity-30 pointer-events-none blur-3xl"
+        style={{ background: "#FF7BD0" }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-20 -right-20 w-80 h-80 rounded-full opacity-25 pointer-events-none blur-3xl"
+        style={{ background: "#7B5CFF" }}
+        aria-hidden="true"
+      />
+
+      <div className="max-w-7xl mx-auto w-full relative z-10">
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -59,36 +72,50 @@ export default function HeroBento() {
             variants={fadeUp}
             className="bento-card p-8 flex flex-col justify-between relative overflow-hidden"
             style={{
-              background: "#00A4FA",
+              background: "linear-gradient(135deg, #00A4FA 0%, #0090E0 100%)",
               gridColumn: "1 / 3",
               gridRow: "1 / 3",
-              minHeight: 420,
+              minHeight: 460,
             }}
           >
+            <SquigglePattern color="#21263F" opacity={0.08} size={70} />
             <Squiggle
               color="#21263F"
-              opacity={0.07}
-              width={380}
-              height={140}
-              className="absolute bottom-24 -left-8 rotate-6"
+              opacity={0.12}
+              variant="loop"
+              width={420}
+              height={150}
+              className="absolute -top-4 -right-8 rotate-12"
+            />
+            <Squiggle
+              color="#FFFFFF"
+              opacity={0.18}
+              variant="scribble"
+              width={300}
+              height={100}
+              className="absolute bottom-32 -left-12"
             />
 
             <div className="relative z-10">
-              <span className="inline-block text-xs font-bold px-3 py-1.5 rounded-full mb-6"
-                style={{ background: "rgba(33,38,63,0.12)", color: "#21263F" }}>
-                {t.hero.badge}
+              <span
+                className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full mb-6 shadow-sm"
+                style={{ background: "rgba(33,38,63,0.14)", color: "#21263F" }}
+              >
+                <Sparkles size={12} aria-hidden="true" />
+                {t.hero.badge.replace("✨ ", "")}
               </span>
               <h1
-                className="font-display text-[#21263F] mb-4 leading-[0.95]"
+                className="font-display text-[#21263F] mb-4 leading-[0.92]"
                 style={{
-                  fontSize: "clamp(38px, 5.5vw, 80px)",
-                  letterSpacing: "-0.03em",
+                  fontSize: "clamp(40px, 6vw, 84px)",
+                  letterSpacing: "-0.035em",
                   whiteSpace: "pre-line",
+                  textShadow: "0 1px 0 rgba(255,255,255,0.1)",
                 }}
               >
                 {t.hero.headline}
               </h1>
-              <p className="text-[#21263F]/80 text-lg font-medium mb-8 max-w-sm">
+              <p className="text-[#21263F]/85 text-lg font-medium mb-8 max-w-sm">
                 {t.hero.subhead}
               </p>
               <div className="flex flex-wrap gap-3">
@@ -98,14 +125,14 @@ export default function HeroBento() {
             </div>
 
             {/* Mascot */}
-            <div className="absolute bottom-0 end-6 z-20">
+            <div className="absolute bottom-0 end-4 z-20" style={{ filter: "drop-shadow(0 8px 16px rgba(0,0,0,0.2))" }}>
               <ImageWithFallback
                 src="/mascot/idle.png"
                 alt="Grafly mascot"
                 className="mascot-float object-contain"
                 fallbackBg="transparent"
                 fallbackTextColor="#21263F"
-                style={{ width: 140, height: 160 }}
+                style={{ width: 170, height: 190 }}
               />
             </div>
           </motion.div>
@@ -113,73 +140,121 @@ export default function HeroBento() {
           {/* ── Phone mockup card ── */}
           <motion.div
             variants={fadeUp}
-            className="bento-card flex items-center justify-center py-10"
+            className="bento-card flex items-center justify-center py-10 relative overflow-hidden"
             style={{
-              background: "#21263F",
+              background: "linear-gradient(160deg, #21263F 0%, #2D3354 100%)",
               gridColumn: "3 / 4",
               gridRow: "1 / 3",
             }}
           >
-            <PhoneMockup
-              screenshotSrc="/screenshots/home.png"
-              screenshotAlt="Grafly home screen"
-              tiltOnHover
+            <SquigglePattern color="#00A4FA" opacity={0.1} size={60} />
+            <Squiggle
+              color="#FF7BD0"
+              opacity={0.18}
+              variant="loop"
+              width={260}
+              height={90}
+              className="absolute -top-4 -left-6"
             />
+            <Squiggle
+              color="#E3ED43"
+              opacity={0.18}
+              variant="wave"
+              width={260}
+              height={90}
+              className="absolute -bottom-2 -right-6"
+            />
+            <div className="relative z-10">
+              <PhoneMockup
+                screenshotSrc="/screenshots/home.png"
+                screenshotAlt="Grafly home screen"
+                tiltOnHover
+              />
+            </div>
           </motion.div>
 
           {/* ── Stats card ── */}
           <motion.div
             variants={fadeUp}
-            className="bento-card p-6 flex flex-col justify-around"
+            className="bento-card p-6 flex flex-col justify-around relative overflow-hidden"
             style={{
               background: "#E3ED43",
               gridColumn: "4 / 5",
               gridRow: "1 / 2",
             }}
           >
-            {[
-              { num: t.hero.stat1Number, label: t.hero.stat1Label },
-              { num: t.hero.stat2Number, label: t.hero.stat2Label },
-              { num: t.hero.stat3Number, label: t.hero.stat3Label },
-            ].map(({ num, label }) => (
-              <div key={label} className="text-center">
-                <div
-                  className="font-display text-[#21263F]"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 52px)", letterSpacing: "-0.04em" }}
-                >
-                  {num}
+            <Squiggle
+              color="#21263F"
+              opacity={0.1}
+              variant="scribble"
+              width={180}
+              height={60}
+              className="absolute top-0 left-0"
+            />
+            {/* Cool yellow mascot peeks corner */}
+            <div className="absolute -top-2 -right-2 z-0 opacity-80">
+              <ImageWithFallback
+                src="/mascot/cool_yellow.png"
+                alt=""
+                className="object-contain"
+                fallbackBg="transparent"
+                fallbackTextColor="#21263F"
+                style={{ width: 50, height: 50 }}
+              />
+            </div>
+            <div className="relative z-10">
+              {[
+                { num: t.hero.stat1Number, label: t.hero.stat1Label },
+                { num: t.hero.stat2Number, label: t.hero.stat2Label },
+                { num: t.hero.stat3Number, label: t.hero.stat3Label },
+              ].map(({ num, label }) => (
+                <div key={label} className="text-center my-2">
+                  <div
+                    className="font-display text-[#21263F]"
+                    style={{ fontSize: "clamp(32px, 4vw, 56px)", letterSpacing: "-0.04em", lineHeight: 1 }}
+                  >
+                    {num}
+                  </div>
+                  <div className="text-[#21263F]/70 text-xs font-bold uppercase tracking-wider mt-1">
+                    {label}
+                  </div>
                 </div>
-                <div className="text-[#21263F]/70 text-sm font-bold uppercase tracking-wider">
-                  {label}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </motion.div>
 
           {/* ── Badge card ── */}
           <motion.div
             variants={fadeUp}
-            className="bento-card p-5 flex items-center justify-center"
+            className="bento-card p-5 flex items-center justify-center relative overflow-hidden"
             style={{
               background: "#F5F6FA",
               gridColumn: "4 / 5",
               gridRow: "2 / 3",
             }}
           >
+            <Squiggle
+              color="#00A4FA"
+              opacity={0.15}
+              variant="wave"
+              width={200}
+              height={80}
+              className="absolute inset-0"
+            />
             <span
-              className="text-sm font-bold px-4 py-2 rounded-full text-center"
+              className="inline-flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-full text-center relative z-10 shadow-sm"
               style={{
                 border: "2px solid #00A4FA",
                 color: "#0078BB",
-                background: "rgba(0,164,250,0.06)",
+                background: "rgba(255,255,255,0.85)",
               }}
             >
-              {t.hero.badge}
+              <Sparkles size={14} aria-hidden="true" />
+              {t.hero.badge.replace("✨ ", "")}
             </span>
           </motion.div>
         </motion.div>
 
-        {/* ── Mobile layout (override grid to single column) ── */}
         <style>{`
           @media (max-width: 767px) {
             #hero .grid {

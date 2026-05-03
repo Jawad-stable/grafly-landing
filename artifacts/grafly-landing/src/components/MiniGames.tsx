@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useLang } from "@/hooks/useLang";
+import Squiggle, { SquigglePattern } from "./Squiggle";
+import ImageWithFallback from "./ImageWithFallback";
 
 /* ── Color Match ─────────────────────────────────────────────── */
 const SWATCHES = ["#00A4FA", "#E3ED43", "#FF7BD0", "#7B5CFF"];
@@ -24,9 +26,7 @@ function ColorMatch() {
             style={{
               background: color,
               transform: selected === i ? "scale(1.15)" : "scale(1)",
-              boxShadow: selected === i
-                ? `0 0 0 3px white, 0 0 0 5px ${color}`
-                : "none",
+              boxShadow: selected === i ? `0 0 0 3px white, 0 0 0 5px ${color}` : "none",
             }}
             aria-label={`Color option ${i + 1}`}
             aria-pressed={selected === i}
@@ -46,16 +46,11 @@ function ColorMatch() {
 function ContrastTuner() {
   const { t } = useLang();
   const [value, setValue] = useState(50);
-
   const textOpacity = 0.2 + (value / 100) * 0.8;
 
   return (
     <div className="flex flex-col gap-3">
-      <p
-        className="text-sm font-bold transition-all"
-        style={{ opacity: textOpacity }}
-        aria-live="polite"
-      >
+      <p className="text-sm font-bold transition-all" style={{ opacity: textOpacity }} aria-live="polite">
         The quick brown fox
       </p>
       <input
@@ -117,7 +112,6 @@ function DragMatch() {
   const [matched, setMatched] = useState<Record<number, number>>({});
 
   const handleTermClick = (i: number) => setSelected(i);
-
   const handleDefClick = (defIdx: number) => {
     if (selected !== null && !(selected in matched)) {
       setMatched((prev) => ({ ...prev, [selected]: defIdx }));
@@ -165,9 +159,7 @@ function DragMatch() {
                 disabled={isMatched || selected === null}
                 className="text-xs px-2 py-1.5 rounded-xl text-start transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 style={{
-                  background: isMatched
-                    ? "rgba(100,200,100,0.3)"
-                    : "rgba(255,255,255,0.1)",
+                  background: isMatched ? "rgba(100,200,100,0.3)" : "rgba(255,255,255,0.1)",
                   border: "2px solid transparent",
                 }}
               >
@@ -186,13 +178,17 @@ const GAME_CARDS = [
   {
     bg: "#FF7BD0",
     text: "#21263F",
+    squiggle: "loop" as const,
+    mascot: "/mascot/correct.png",
     getTitle: (t: ReturnType<typeof useLang>["t"]) => t.games.colorMatch.title,
     getBody: (t: ReturnType<typeof useLang>["t"]) => t.games.colorMatch.body,
     Demo: ColorMatch,
   },
   {
-    bg: "#21263F",
+    bg: "linear-gradient(160deg, #21263F 0%, #2D3354 100%)",
     text: "#F5F6FA",
+    squiggle: "wave" as const,
+    squiggleColor: "#00A4FA",
     getTitle: (t: ReturnType<typeof useLang>["t"]) => t.games.contrastTuner.title,
     getBody: (t: ReturnType<typeof useLang>["t"]) => t.games.contrastTuner.body,
     Demo: ContrastTuner,
@@ -200,6 +196,8 @@ const GAME_CARDS = [
   {
     bg: "#E3ED43",
     text: "#21263F",
+    squiggle: "scribble" as const,
+    mascot: "/mascot/cool_yellow.png",
     getTitle: (t: ReturnType<typeof useLang>["t"]) => t.games.paletteBuilder.title,
     getBody: (t: ReturnType<typeof useLang>["t"]) => t.games.paletteBuilder.body,
     Demo: PaletteBuilder,
@@ -207,6 +205,7 @@ const GAME_CARDS = [
   {
     bg: "#00A4FA",
     text: "#21263F",
+    squiggle: "spiral" as const,
     getTitle: (t: ReturnType<typeof useLang>["t"]) => t.games.dragMatch.title,
     getBody: (t: ReturnType<typeof useLang>["t"]) => t.games.dragMatch.body,
     Demo: DragMatch,
@@ -219,41 +218,66 @@ export default function MiniGames() {
   return (
     <section aria-labelledby="games-heading" className="py-20 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
-        <motion.h2
-          id="games-heading"
-          className="font-display mb-10 text-center"
-          style={{ fontSize: "clamp(28px, 4vw, 56px)", letterSpacing: "-0.03em" }}
+        <motion.div
+          className="flex flex-col items-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          {t.games.sectionTitle}
-        </motion.h2>
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#FF7BD0] mb-3">— Play & learn —</span>
+          <h2
+            id="games-heading"
+            className="font-display text-center"
+            style={{ fontSize: "clamp(32px, 5vw, 64px)", letterSpacing: "-0.03em" }}
+          >
+            {t.games.sectionTitle}
+          </h2>
+        </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {GAME_CARDS.map(({ bg, text, getTitle, getBody, Demo }, i) => (
+          {GAME_CARDS.map(({ bg, text, getTitle, getBody, Demo, squiggle, squiggleColor, mascot }, i) => (
             <motion.div
               key={i}
-              className="bento-card p-6 flex flex-col gap-4"
-              style={{ background: bg, color: text, minHeight: 260 }}
+              className="bento-card p-6 flex flex-col gap-4 relative overflow-hidden"
+              style={{ background: bg, color: text, minHeight: 280 }}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <div>
-                <h3
-                  className="font-display text-xl mb-1"
-                  style={{ letterSpacing: "-0.02em" }}
-                >
+              <SquigglePattern color={text} opacity={0.05} size={50} />
+              <Squiggle
+                color={squiggleColor ?? text}
+                opacity={0.16}
+                variant={squiggle}
+                width={220}
+                height={80}
+                className="absolute -bottom-3 -right-4"
+              />
+
+              {mascot && (
+                <div className="absolute -top-3 -right-3 opacity-90 z-10" style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}>
+                  <ImageWithFallback
+                    src={mascot}
+                    alt=""
+                    className="mascot-float object-contain"
+                    fallbackBg="transparent"
+                    fallbackTextColor={text}
+                    style={{ width: 60, height: 60 }}
+                  />
+                </div>
+              )}
+
+              <div className="relative z-10">
+                <h3 className="font-display text-xl mb-1" style={{ letterSpacing: "-0.02em" }}>
                   {getTitle(t)}
                 </h3>
-                <p className="text-sm" style={{ opacity: 0.75 }}>
+                <p className="text-sm" style={{ opacity: 0.78 }}>
                   {getBody(t)}
                 </p>
               </div>
-              <div className="mt-auto">
+              <div className="mt-auto relative z-10">
                 <Demo />
               </div>
             </motion.div>

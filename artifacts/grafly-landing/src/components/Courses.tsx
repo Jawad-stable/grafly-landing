@@ -48,14 +48,14 @@ export default function Courses() {
               >
                 {/* Color Theory gets the cool_purple mascot */}
                 {mascot && (
-                  <div className="absolute -top-3 -right-3 opacity-90 z-10" style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}>
+                  <div className="absolute -top-5 -right-4 opacity-95 z-10" style={{ filter: "drop-shadow(0 8px 14px rgba(0,0,0,0.25))" }}>
                     <ImageWithFallback
                       src={mascot}
                       alt=""
                       className="mascot-float object-contain"
                       fallbackBg="transparent"
                       fallbackTextColor={text}
-                      style={{ width: 70, height: 70 }}
+                      style={{ width: 130, height: 130 }}
                     />
                   </div>
                 )}

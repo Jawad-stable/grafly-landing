@@ -90,14 +90,14 @@ export default function FooterBento() {
             style={{ background: "linear-gradient(160deg, #00A4FA 0%, #0090E0 100%)", color: "#21263F" }}
           >
             {/* Cool yellow mascot */}
-            <div className="absolute top-4 end-4 z-10 opacity-95" style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}>
+            <div className="absolute -top-2 -end-2 z-10 opacity-95" style={{ filter: "drop-shadow(0 8px 14px rgba(0,0,0,0.25))" }}>
               <ImageWithFallback
                 src="/mascot/cool_yellow.png"
                 alt=""
                 className="mascot-float object-contain"
                 fallbackBg="transparent"
                 fallbackTextColor="#21263F"
-                style={{ width: 70, height: 70 }}
+                style={{ width: 130, height: 130 }}
               />
             </div>
 

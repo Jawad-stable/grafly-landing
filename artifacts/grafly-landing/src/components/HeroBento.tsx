@@ -87,7 +87,7 @@ export default function HeroBento() {
               className="absolute -top-2 -right-6"
             />
 
-            <div className="relative z-10 max-w-[62%]">
+            <div className="relative z-10">
               <span
                 className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full mb-6 shadow-sm"
                 style={{ background: "rgba(33,38,63,0.14)", color: "#21263F" }}
@@ -98,7 +98,7 @@ export default function HeroBento() {
               <h1
                 className="font-display text-[#21263F] mb-4 leading-[0.92]"
                 style={{
-                  fontSize: "clamp(36px, 5vw, 72px)",
+                  fontSize: "clamp(40px, 6vw, 84px)",
                   letterSpacing: "-0.035em",
                   whiteSpace: "pre-line",
                 }}
@@ -114,30 +114,15 @@ export default function HeroBento() {
               </div>
             </div>
 
-            {/* Mascot — hero star element */}
-            <div
-              className="absolute -bottom-12 -end-12 z-20 pointer-events-none"
-              style={{ filter: "drop-shadow(0 24px 40px rgba(0,0,0,0.35))" }}
-            >
-              {/* Glow halo behind mascot */}
-              <div
-                className="absolute rounded-full blur-3xl opacity-70"
-                style={{
-                  background: "radial-gradient(circle, #E3ED43 0%, transparent 70%)",
-                  width: 360,
-                  height: 360,
-                  top: 50,
-                  left: 20,
-                }}
-                aria-hidden="true"
-              />
+            {/* Mascot */}
+            <div className="absolute bottom-0 end-4 z-20" style={{ filter: "drop-shadow(0 8px 16px rgba(0,0,0,0.2))" }}>
               <ImageWithFallback
                 src="/mascot/idle.png"
                 alt="Grafly mascot"
-                className="mascot-float object-contain relative"
+                className="mascot-float object-contain"
                 fallbackBg="transparent"
                 fallbackTextColor="#21263F"
-                style={{ width: 420, height: 460 }}
+                style={{ width: 170, height: 190 }}
               />
             </div>
           </motion.div>
@@ -172,14 +157,17 @@ export default function HeroBento() {
             }}
           >
             {/* Cool yellow mascot peeks corner */}
-            <div className="absolute -top-2 -right-2 z-0 opacity-80">
+            <div
+              className="absolute -top-4 -right-4 z-0 opacity-90"
+              style={{ filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.18))" }}
+            >
               <ImageWithFallback
                 src="/mascot/cool_yellow.png"
                 alt=""
-                className="object-contain"
+                className="mascot-float object-contain"
                 fallbackBg="transparent"
                 fallbackTextColor="#21263F"
-                style={{ width: 50, height: 50 }}
+                style={{ width: 110, height: 110 }}
               />
             </div>
             <div className="relative z-10">

@@ -4,6 +4,7 @@ import { useLang } from "@/hooks/useLang";
 import ImageWithFallback from "./ImageWithFallback";
 import PhoneMockup from "./PhoneMockup";
 import Squiggle from "./Squiggle";
+import PatternBg from "./PatternBg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -78,6 +79,7 @@ export default function HeroBento() {
               minHeight: 460,
             }}
           >
+            <PatternBg color="rgba(255,255,255,0.95)" size="360px" maxOpacity={0.55} fadeFrom="br" offsetX="-40px" offsetY="20px" />
             <Squiggle
               color="#21263F"
               opacity={0.1}
@@ -156,6 +158,7 @@ export default function HeroBento() {
               gridRow: "1 / 2",
             }}
           >
+            <PatternBg color="rgba(255,255,255,0.95)" size="220px" maxOpacity={0.5} fadeFrom="tr" offsetX="20px" offsetY="-10px" />
             <div className="relative z-10">
               {[
                 { num: t.hero.stat1Number, label: t.hero.stat1Label },

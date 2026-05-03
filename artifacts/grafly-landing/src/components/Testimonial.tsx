@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useLang } from "@/hooks/useLang";
 import ImageWithFallback from "./ImageWithFallback";
+import PatternBg from "./PatternBg";
 
 function QuoteMark({ color }: { color: string }) {
   return (
@@ -39,6 +40,7 @@ export default function Testimonial() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
+          <PatternBg color="rgba(255,255,255,0.9)" size="320px" maxOpacity={0.5} fadeFrom="br" offsetX="20px" />
           {/* Decorative quote marks */}
           <div className="absolute top-10 start-10 z-0">
             <QuoteMark color="#FFFFFF" />

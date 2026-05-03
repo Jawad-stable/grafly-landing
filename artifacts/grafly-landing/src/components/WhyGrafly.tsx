@@ -2,12 +2,20 @@ import { motion } from "framer-motion";
 import { Gamepad2, BookOpen, Coffee, Globe, TrendingUp } from "lucide-react";
 import { useLang } from "@/hooks/useLang";
 import ImageWithFallback from "./ImageWithFallback";
+import PatternBg from "./PatternBg";
 
-const CARD_COLORS = [
-  { bg: "#FF7BD0", text: "#21263F", icon: Gamepad2 },
+type FadeDir = "tl" | "tr" | "bl" | "br";
+const CARD_COLORS: Array<{
+  bg: string; text: string; icon: typeof Gamepad2; border?: string;
+  pattern?: { color: string; size: string; maxOpacity: number; fadeFrom: FadeDir; offsetX?: string; offsetY?: string };
+}> = [
+  { bg: "#FF7BD0", text: "#21263F", icon: Gamepad2,
+    pattern: { color: "rgba(255,255,255,0.9)", size: "260px", maxOpacity: 0.55, fadeFrom: "tr", offsetX: "30px", offsetY: "-20px" } },
   { bg: "#21263F", text: "#F5F6FA", icon: BookOpen },
-  { bg: "#E3ED43", text: "#21263F", icon: Coffee },
-  { bg: "#00A4FA", text: "#21263F", icon: Globe },
+  { bg: "#E3ED43", text: "#21263F", icon: Coffee,
+    pattern: { color: "rgba(255,255,255,0.9)", size: "200px", maxOpacity: 0.55, fadeFrom: "bl", offsetX: "-10px", offsetY: "20px" } },
+  { bg: "#00A4FA", text: "#21263F", icon: Globe,
+    pattern: { color: "rgba(255,255,255,0.95)", size: "280px", maxOpacity: 0.6, fadeFrom: "tl", offsetX: "10px" } },
   { bg: "#F5F6FA", text: "#21263F", icon: TrendingUp, border: "2px solid #21263F" },
 ];
 
@@ -54,7 +62,7 @@ export default function WhyGrafly() {
           }}
         >
           {t.why.cards.map((card, i) => {
-            const { bg, text, icon: Icon, border } = CARD_COLORS[i];
+            const { bg, text, icon: Icon, border, pattern } = CARD_COLORS[i];
             const areas = ["a", "b", "c", "d", "e"];
             return (
               <motion.div
@@ -73,6 +81,7 @@ export default function WhyGrafly() {
                   minHeight: 200,
                 }}
               >
+                {pattern && <PatternBg {...pattern} />}
                 <div
                   className="w-14 h-14 rounded-2xl flex items-center justify-center relative z-10"
                   style={{ background: `${text}1a` }}

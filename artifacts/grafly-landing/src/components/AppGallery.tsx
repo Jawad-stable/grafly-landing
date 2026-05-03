@@ -2,6 +2,16 @@ import { motion } from "framer-motion";
 import { useLang } from "@/hooks/useLang";
 import PhoneMockup from "./PhoneMockup";
 import Squiggle from "./Squiggle";
+import PatternBg from "./PatternBg";
+
+type FadeDir = "tl" | "tr" | "bl" | "br";
+const FEATURED_PATTERN = { color: "rgba(255,255,255,0.92)", size: "380px", maxOpacity: 0.55, fadeFrom: "br" as FadeDir, offsetX: "20px" };
+const SUPPORTING_PATTERNS: Array<{ color: string; size: string; maxOpacity: number; fadeFrom: FadeDir; offsetX?: string; offsetY?: string } | null> = [
+  { color: "rgba(255,255,255,0.92)", size: "240px", maxOpacity: 0.55, fadeFrom: "tl", offsetX: "10px" },
+  null,
+  { color: "rgba(255,255,255,0.92)", size: "200px", maxOpacity: 0.5, fadeFrom: "bl", offsetX: "-20px", offsetY: "10px" },
+  null,
+];
 
 const FEATURED = 1;
 
@@ -76,6 +86,7 @@ export default function AppGallery() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
+            <PatternBg {...FEATURED_PATTERN} />
             <Squiggle
               color="#FFFFFF"
               opacity={0.12}
@@ -127,6 +138,7 @@ export default function AppGallery() {
           {/* ── 3 supporting cards ── */}
           {GALLERY.map((card, i) => {
             if (i === FEATURED) return null;
+            const cardPattern = SUPPORTING_PATTERNS[i];
             return (
               <motion.div
                 key={card.src}
@@ -137,6 +149,7 @@ export default function AppGallery() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 + i * 0.05 }}
               >
+                {cardPattern && <PatternBg {...cardPattern} />}
                 {/* Chip label */}
                 <span
                   className="absolute top-5 start-5 text-[11px] font-bold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full z-10"

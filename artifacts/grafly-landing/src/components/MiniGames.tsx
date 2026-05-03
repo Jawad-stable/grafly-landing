@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useLang } from "@/hooks/useLang";
+import PatternBg from "./PatternBg";
 
 /* ── Color Match ─────────────────────────────────────────────── */
 const SWATCHES = ["#00A4FA", "#E3ED43", "#FF7BD0", "#7B5CFF"];
@@ -172,34 +173,46 @@ function DragMatch() {
 }
 
 /* ── Main component ──────────────────────────────────────────── */
-const GAME_CARDS = [
+type FadeDir = "tl" | "tr" | "bl" | "br";
+type Pattern = { color: string; size: string; maxOpacity: number; fadeFrom: FadeDir; offsetX?: string; offsetY?: string };
+
+const GAME_CARDS: Array<{
+  bg: string; text: string;
+  getTitle: (t: ReturnType<typeof useLang>["t"]) => string;
+  getBody: (t: ReturnType<typeof useLang>["t"]) => string;
+  Demo: React.FC;
+  pattern?: Pattern;
+}> = [
   {
     bg: "#FF7BD0",
     text: "#21263F",
-    getTitle: (t: ReturnType<typeof useLang>["t"]) => t.games.colorMatch.title,
-    getBody: (t: ReturnType<typeof useLang>["t"]) => t.games.colorMatch.body,
+    getTitle: (t) => t.games.colorMatch.title,
+    getBody: (t) => t.games.colorMatch.body,
     Demo: ColorMatch,
+    pattern: { color: "rgba(255,255,255,0.9)", size: "240px", maxOpacity: 0.5, fadeFrom: "tr", offsetX: "20px" },
   },
   {
     bg: "linear-gradient(160deg, #21263F 0%, #2D3354 100%)",
     text: "#F5F6FA",
-    getTitle: (t: ReturnType<typeof useLang>["t"]) => t.games.contrastTuner.title,
-    getBody: (t: ReturnType<typeof useLang>["t"]) => t.games.contrastTuner.body,
+    getTitle: (t) => t.games.contrastTuner.title,
+    getBody: (t) => t.games.contrastTuner.body,
     Demo: ContrastTuner,
   },
   {
     bg: "#E3ED43",
     text: "#21263F",
-    getTitle: (t: ReturnType<typeof useLang>["t"]) => t.games.paletteBuilder.title,
-    getBody: (t: ReturnType<typeof useLang>["t"]) => t.games.paletteBuilder.body,
+    getTitle: (t) => t.games.paletteBuilder.title,
+    getBody: (t) => t.games.paletteBuilder.body,
     Demo: PaletteBuilder,
+    pattern: { color: "rgba(255,255,255,0.9)", size: "200px", maxOpacity: 0.55, fadeFrom: "bl", offsetX: "-10px", offsetY: "20px" },
   },
   {
     bg: "#00A4FA",
     text: "#21263F",
-    getTitle: (t: ReturnType<typeof useLang>["t"]) => t.games.dragMatch.title,
-    getBody: (t: ReturnType<typeof useLang>["t"]) => t.games.dragMatch.body,
+    getTitle: (t) => t.games.dragMatch.title,
+    getBody: (t) => t.games.dragMatch.body,
     Demo: DragMatch,
+    pattern: { color: "rgba(255,255,255,0.95)", size: "260px", maxOpacity: 0.6, fadeFrom: "br", offsetY: "10px" },
   },
 ];
 
@@ -227,7 +240,7 @@ export default function MiniGames() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {GAME_CARDS.map(({ bg, text, getTitle, getBody, Demo }, i) => (
+          {GAME_CARDS.map(({ bg, text, getTitle, getBody, Demo, pattern }, i) => (
             <motion.div
               key={i}
               className="bento-card p-6 flex flex-col gap-4 relative overflow-hidden"
@@ -237,6 +250,7 @@ export default function MiniGames() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
+              {pattern && <PatternBg {...pattern} />}
               <div className="relative z-10">
                 <h3 className="font-display text-xl mb-1" style={{ letterSpacing: "-0.02em" }}>
                   {getTitle(t)}

@@ -1,11 +1,21 @@
 import { motion } from "framer-motion";
 import { Shapes, Palette, Type, LayoutGrid } from "lucide-react";
 import { useLang } from "@/hooks/useLang";
-const COURSE_CONFIG = [
-  { bg: "#00A4FA", text: "#21263F", icon: Shapes },
-  { bg: "#7B5CFF", text: "#FFFFFF", icon: Palette },
-  { bg: "#FF7BD0", text: "#21263F", icon: Type },
-  { bg: "#E3ED43", text: "#21263F", icon: LayoutGrid },
+import PatternBg from "./PatternBg";
+
+type FadeDir = "tl" | "tr" | "bl" | "br";
+const COURSE_CONFIG: Array<{
+  bg: string; text: string; icon: typeof Shapes;
+  pattern: { color: string; size: string; maxOpacity: number; fadeFrom: FadeDir; offsetX?: string; offsetY?: string };
+}> = [
+  { bg: "#00A4FA", text: "#21263F", icon: Shapes,
+    pattern: { color: "rgba(255,255,255,0.95)", size: "240px", maxOpacity: 0.6, fadeFrom: "br", offsetX: "0px" } },
+  { bg: "#7B5CFF", text: "#FFFFFF", icon: Palette,
+    pattern: { color: "rgba(255,255,255,0.85)", size: "200px", maxOpacity: 0.5, fadeFrom: "tl", offsetX: "20px", offsetY: "10px" } },
+  { bg: "#FF7BD0", text: "#21263F", icon: Type,
+    pattern: { color: "rgba(255,255,255,0.9)", size: "220px", maxOpacity: 0.55, fadeFrom: "tr", offsetX: "-20px" } },
+  { bg: "#E3ED43", text: "#21263F", icon: LayoutGrid,
+    pattern: { color: "rgba(255,255,255,0.9)", size: "180px", maxOpacity: 0.55, fadeFrom: "bl", offsetY: "30px" } },
 ];
 
 export default function Courses() {
@@ -33,7 +43,7 @@ export default function Courses() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {t.courses.list.map((course, i) => {
-            const { bg, text, icon: Icon } = COURSE_CONFIG[i];
+            const { bg, text, icon: Icon, pattern } = COURSE_CONFIG[i];
             return (
               <motion.div
                 key={course.name}
@@ -44,6 +54,7 @@ export default function Courses() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
+                <PatternBg {...pattern} />
                 <div
                   className="w-12 h-12 rounded-2xl flex items-center justify-center relative z-10"
                   style={{ background: `${text}1f` }}

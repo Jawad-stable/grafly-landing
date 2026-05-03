@@ -1,0 +1,81 @@
+import { motion } from "framer-motion";
+import { Shapes, Palette, Type, LayoutGrid } from "lucide-react";
+import { useLang } from "@/hooks/useLang";
+
+const COURSE_CONFIG = [
+  { bg: "#00A4FA", text: "#21263F", icon: Shapes },
+  { bg: "#7B5CFF", text: "#FFFFFF", icon: Palette },
+  { bg: "#FF7BD0", text: "#21263F", icon: Type },
+  { bg: "#E3ED43", text: "#21263F", icon: LayoutGrid },
+];
+
+export default function Courses() {
+  const { t } = useLang();
+
+  return (
+    <section aria-labelledby="courses-heading" className="py-20 px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto">
+        <motion.h2
+          id="courses-heading"
+          className="font-display mb-10 text-center"
+          style={{ fontSize: "clamp(28px, 4vw, 56px)", letterSpacing: "-0.03em" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          {t.courses.sectionTitle}
+        </motion.h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {t.courses.list.map((course, i) => {
+            const { bg, text, icon: Icon } = COURSE_CONFIG[i];
+            return (
+              <motion.div
+                key={course.name}
+                className="bento-card p-7 flex flex-col gap-4"
+                style={{ background: bg, color: text, minHeight: 200 }}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <div
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center"
+                  style={{ background: `${text}18` }}
+                >
+                  <Icon size={24} strokeWidth={2} color={text} aria-hidden="true" />
+                </div>
+
+                <div className="flex-1">
+                  <h3
+                    className="font-display text-2xl mb-1"
+                    style={{ letterSpacing: "-0.02em" }}
+                  >
+                    {course.name}
+                  </h3>
+                  <p className="text-sm font-medium" style={{ opacity: 0.7 }}>
+                    {course.lessons} · {course.level}
+                  </p>
+                </div>
+
+                <a
+                  href="#download"
+                  className="self-start text-sm font-bold px-4 py-2 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2"
+                  style={{
+                    background: `${text}18`,
+                    color: text,
+                    focusVisible: `outline-color: ${text}`,
+                  }}
+                  aria-label={`Start ${course.name}`}
+                >
+                  {t.courses.cta}
+                </a>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -46,12 +46,12 @@ export default function HeroBento() {
     >
       {/* Floating decorative blobs */}
       <div
-        className="absolute top-32 -left-20 w-72 h-72 rounded-full opacity-20 pointer-events-none blur-3xl"
+        className="absolute top-32 -start-20 w-72 h-72 rounded-full opacity-20 pointer-events-none blur-3xl"
         style={{ background: "#FF7BD0" }}
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-20 -right-20 w-80 h-80 rounded-full opacity-15 pointer-events-none blur-3xl"
+        className="absolute bottom-20 -end-20 w-80 h-80 rounded-full opacity-15 pointer-events-none blur-3xl"
         style={{ background: "#7B5CFF" }}
         aria-hidden="true"
       />
@@ -84,7 +84,7 @@ export default function HeroBento() {
               variant="loop"
               width={380}
               height={130}
-              className="absolute -top-2 -right-6"
+              className="absolute -top-2 -end-6"
             />
 
             <div className="relative z-10">
@@ -158,7 +158,7 @@ export default function HeroBento() {
           >
             {/* Cool yellow mascot peeks corner */}
             <div
-              className="absolute -top-4 -right-4 z-0 opacity-90"
+              className="absolute -top-4 -end-4 z-0 opacity-90"
               style={{ filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.18))" }}
             >
               <ImageWithFallback

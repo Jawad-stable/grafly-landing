@@ -53,7 +53,7 @@ export default function FooterBento() {
               variant="loop"
               width={300}
               height={100}
-              className="absolute -top-2 left-0"
+              className="absolute -top-2 start-0"
             />
 
             <div className="relative z-10 flex-1">

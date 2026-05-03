@@ -75,7 +75,7 @@ export default function WhyGrafly() {
               >
                 {/* Show "correct" mascot on first card */}
                 {i === 0 && (
-                  <div className="absolute -top-4 -right-4 opacity-95 z-10" style={{ filter: "drop-shadow(0 8px 14px rgba(0,0,0,0.2))" }}>
+                  <div className="absolute -top-4 -end-4 opacity-95 z-10" style={{ filter: "drop-shadow(0 8px 14px rgba(0,0,0,0.2))" }}>
                     <ImageWithFallback
                       src="/mascot/correct.png"
                       alt=""

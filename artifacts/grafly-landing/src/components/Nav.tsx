@@ -89,7 +89,7 @@ export default function Nav() {
               />
               {/* sparkle dot */}
               <span
-                className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full"
+                className="absolute -top-0.5 -end-0.5 w-2 h-2 rounded-full"
                 style={{ background: "#E3ED43", boxShadow: "0 0 0 2px var(--color-background)" }}
                 aria-hidden="true"
               />

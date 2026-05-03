@@ -1,15 +1,14 @@
 import { motion } from "framer-motion";
 import { Gamepad2, BookOpen, Coffee, Globe, TrendingUp } from "lucide-react";
 import { useLang } from "@/hooks/useLang";
-import Squiggle, { SquigglePattern } from "./Squiggle";
 import ImageWithFallback from "./ImageWithFallback";
 
 const CARD_COLORS = [
-  { bg: "#FF7BD0", text: "#21263F", icon: Gamepad2, squiggle: "loop" as const, squiggleColor: "#21263F" },
-  { bg: "#21263F", text: "#F5F6FA", icon: BookOpen, squiggle: "wave" as const, squiggleColor: "#00A4FA" },
-  { bg: "#E3ED43", text: "#21263F", icon: Coffee, squiggle: "scribble" as const, squiggleColor: "#21263F" },
-  { bg: "#00A4FA", text: "#21263F", icon: Globe, squiggle: "spiral" as const, squiggleColor: "#21263F" },
-  { bg: "#F5F6FA", text: "#21263F", icon: TrendingUp, squiggle: "loop" as const, squiggleColor: "#7B5CFF", border: "2px solid #21263F" },
+  { bg: "#FF7BD0", text: "#21263F", icon: Gamepad2 },
+  { bg: "#21263F", text: "#F5F6FA", icon: BookOpen },
+  { bg: "#E3ED43", text: "#21263F", icon: Coffee },
+  { bg: "#00A4FA", text: "#21263F", icon: Globe },
+  { bg: "#F5F6FA", text: "#21263F", icon: TrendingUp, border: "2px solid #21263F" },
 ];
 
 const fadeUp = {
@@ -55,7 +54,7 @@ export default function WhyGrafly() {
           }}
         >
           {t.why.cards.map((card, i) => {
-            const { bg, text, icon: Icon, squiggle, squiggleColor, border } = CARD_COLORS[i];
+            const { bg, text, icon: Icon, border } = CARD_COLORS[i];
             const areas = ["a", "b", "c", "d", "e"];
             return (
               <motion.div
@@ -74,16 +73,6 @@ export default function WhyGrafly() {
                   minHeight: 200,
                 }}
               >
-                <SquigglePattern color={text} opacity={0.05} size={60} />
-                <Squiggle
-                  color={squiggleColor}
-                  opacity={0.18}
-                  variant={squiggle}
-                  width={250}
-                  height={90}
-                  className="absolute -bottom-2 -right-4"
-                />
-
                 {/* Show "correct" mascot on first card */}
                 {i === 0 && (
                   <div className="absolute -top-2 -right-2 opacity-90 z-10" style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.15))" }}>

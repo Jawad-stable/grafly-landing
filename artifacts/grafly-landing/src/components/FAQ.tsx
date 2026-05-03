@@ -4,7 +4,6 @@ import { Plus, Minus } from "lucide-react";
 import { useState } from "react";
 import { useLang } from "@/hooks/useLang";
 import ImageWithFallback from "./ImageWithFallback";
-import Squiggle, { SquigglePattern } from "./Squiggle";
 
 export default function FAQ() {
   const { t } = useLang();
@@ -40,15 +39,6 @@ export default function FAQ() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <SquigglePattern color="#FFFFFF" opacity={0.08} size={70} />
-            <Squiggle
-              color="#FFFFFF"
-              opacity={0.22}
-              variant="loop"
-              width={260}
-              height={90}
-              className="absolute -top-2 left-0 right-0 mx-auto"
-            />
             <div className="relative z-10" style={{ filter: "drop-shadow(0 8px 16px rgba(0,0,0,0.25))" }}>
               <ImageWithFallback
                 src="/mascot/think.png"
@@ -76,7 +66,6 @@ export default function FAQ() {
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.1 }}
           >
-            <SquigglePattern color="#00A4FA" opacity={0.05} size={60} />
             <Accordion.Root
               type="single"
               collapsible

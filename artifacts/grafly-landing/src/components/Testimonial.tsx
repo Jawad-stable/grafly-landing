@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useLang } from "@/hooks/useLang";
 import ImageWithFallback from "./ImageWithFallback";
-import Squiggle, { SquigglePattern } from "./Squiggle";
 
 function QuoteMark({ color }: { color: string }) {
   return (
@@ -40,24 +39,6 @@ export default function Testimonial() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <SquigglePattern color="#FFFFFF" opacity={0.07} size={80} />
-          <Squiggle
-            color="#FFFFFF"
-            opacity={0.18}
-            variant="loop"
-            width={400}
-            height={130}
-            className="absolute top-0 left-0 right-0 -translate-y-4"
-          />
-          <Squiggle
-            color="#E3ED43"
-            opacity={0.3}
-            variant="scribble"
-            width={250}
-            height={80}
-            className="absolute bottom-0 left-12"
-          />
-
           {/* Decorative quote marks */}
           <div className="absolute top-10 start-10 z-0">
             <QuoteMark color="#FFFFFF" />

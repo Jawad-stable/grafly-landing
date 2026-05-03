@@ -1,14 +1,13 @@
 import { motion } from "framer-motion";
 import { Shapes, Palette, Type, LayoutGrid } from "lucide-react";
 import { useLang } from "@/hooks/useLang";
-import Squiggle, { SquigglePattern } from "./Squiggle";
 import ImageWithFallback from "./ImageWithFallback";
 
 const COURSE_CONFIG = [
-  { bg: "#00A4FA", text: "#21263F", icon: Shapes, squiggle: "wave" as const },
-  { bg: "#7B5CFF", text: "#FFFFFF", icon: Palette, squiggle: "loop" as const, mascot: "/mascot/cool_purple.png" },
-  { bg: "#FF7BD0", text: "#21263F", icon: Type, squiggle: "scribble" as const },
-  { bg: "#E3ED43", text: "#21263F", icon: LayoutGrid, squiggle: "spiral" as const },
+  { bg: "#00A4FA", text: "#21263F", icon: Shapes },
+  { bg: "#7B5CFF", text: "#FFFFFF", icon: Palette, mascot: "/mascot/cool_purple.png" },
+  { bg: "#FF7BD0", text: "#21263F", icon: Type },
+  { bg: "#E3ED43", text: "#21263F", icon: LayoutGrid },
 ];
 
 export default function Courses() {
@@ -36,7 +35,7 @@ export default function Courses() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {t.courses.list.map((course, i) => {
-            const { bg, text, icon: Icon, squiggle, mascot } = COURSE_CONFIG[i];
+            const { bg, text, icon: Icon, mascot } = COURSE_CONFIG[i];
             return (
               <motion.div
                 key={course.name}
@@ -47,16 +46,6 @@ export default function Courses() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <SquigglePattern color={text} opacity={0.06} size={50} />
-                <Squiggle
-                  color={text}
-                  opacity={0.16}
-                  variant={squiggle}
-                  width={220}
-                  height={80}
-                  className="absolute -bottom-3 -right-4"
-                />
-
                 {/* Color Theory gets the cool_purple mascot */}
                 {mascot && (
                   <div className="absolute -top-3 -right-3 opacity-90 z-10" style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}>

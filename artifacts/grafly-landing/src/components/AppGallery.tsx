@@ -1,13 +1,12 @@
 import { motion } from "framer-motion";
 import { useLang } from "@/hooks/useLang";
 import PhoneMockup from "./PhoneMockup";
-import Squiggle, { SquigglePattern } from "./Squiggle";
 
 const CARD_CONFIG = [
-  { bg: "#00A4FA", src: "/screenshots/home.png", squiggleColor: "#21263F", labelColor: "#21263F", squiggle: "wave" as const },
-  { bg: "#FF7BD0", src: "/screenshots/lesson.png", squiggleColor: "#21263F", labelColor: "#21263F", squiggle: "loop" as const },
-  { bg: "#E3ED43", src: "/screenshots/color-game.png", squiggleColor: "#21263F", labelColor: "#21263F", squiggle: "scribble" as const },
-  { bg: "#21263F", src: "/screenshots/drag-drop.png", squiggleColor: "#00A4FA", labelColor: "#F5F6FA", squiggle: "spiral" as const },
+  { bg: "#00A4FA", src: "/screenshots/home.png", labelColor: "#21263F" },
+  { bg: "#FF7BD0", src: "/screenshots/lesson.png", labelColor: "#21263F" },
+  { bg: "#E3ED43", src: "/screenshots/color-game.png", labelColor: "#21263F" },
+  { bg: "#21263F", src: "/screenshots/drag-drop.png", labelColor: "#F5F6FA" },
 ];
 
 export default function AppGallery() {
@@ -38,24 +37,12 @@ export default function AppGallery() {
             <motion.div
               key={card.src}
               className="bento-card py-10 px-4 flex flex-col items-center gap-6 relative overflow-hidden"
-              style={{
-                background: card.bg,
-                transform: i % 2 === 0 ? "rotate(-0.5deg)" : "rotate(0.5deg)",
-              }}
+              style={{ background: card.bg }}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <SquigglePattern color={card.labelColor} opacity={0.06} size={50} />
-              <Squiggle
-                color={card.squiggleColor}
-                opacity={0.18}
-                variant={card.squiggle}
-                width={200}
-                height={70}
-                className="absolute -top-2 left-0 right-0 mx-auto"
-              />
               <div className="relative z-10" style={{ filter: "drop-shadow(0 12px 24px rgba(0,0,0,0.25))" }}>
                 <PhoneMockup
                   screenshotSrc={card.src}

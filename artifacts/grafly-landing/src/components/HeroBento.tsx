@@ -3,7 +3,7 @@ import { Sparkles } from "lucide-react";
 import { useLang } from "@/hooks/useLang";
 import ImageWithFallback from "./ImageWithFallback";
 import PhoneMockup from "./PhoneMockup";
-import Squiggle, { SquigglePattern } from "./Squiggle";
+import Squiggle from "./Squiggle";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -46,12 +46,12 @@ export default function HeroBento() {
     >
       {/* Floating decorative blobs */}
       <div
-        className="absolute top-32 -left-20 w-72 h-72 rounded-full opacity-30 pointer-events-none blur-3xl"
+        className="absolute top-32 -left-20 w-72 h-72 rounded-full opacity-20 pointer-events-none blur-3xl"
         style={{ background: "#FF7BD0" }}
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-20 -right-20 w-80 h-80 rounded-full opacity-25 pointer-events-none blur-3xl"
+        className="absolute bottom-20 -right-20 w-80 h-80 rounded-full opacity-15 pointer-events-none blur-3xl"
         style={{ background: "#7B5CFF" }}
         aria-hidden="true"
       />
@@ -78,22 +78,13 @@ export default function HeroBento() {
               minHeight: 460,
             }}
           >
-            <SquigglePattern color="#21263F" opacity={0.08} size={70} />
             <Squiggle
               color="#21263F"
-              opacity={0.12}
+              opacity={0.1}
               variant="loop"
-              width={420}
-              height={150}
-              className="absolute -top-4 -right-8 rotate-12"
-            />
-            <Squiggle
-              color="#FFFFFF"
-              opacity={0.18}
-              variant="scribble"
-              width={300}
-              height={100}
-              className="absolute bottom-32 -left-12"
+              width={380}
+              height={130}
+              className="absolute -top-2 -right-6"
             />
 
             <div className="relative z-10">
@@ -110,7 +101,6 @@ export default function HeroBento() {
                   fontSize: "clamp(40px, 6vw, 84px)",
                   letterSpacing: "-0.035em",
                   whiteSpace: "pre-line",
-                  textShadow: "0 1px 0 rgba(255,255,255,0.1)",
                 }}
               >
                 {t.hero.headline}
@@ -147,23 +137,6 @@ export default function HeroBento() {
               gridRow: "1 / 3",
             }}
           >
-            <SquigglePattern color="#00A4FA" opacity={0.1} size={60} />
-            <Squiggle
-              color="#FF7BD0"
-              opacity={0.18}
-              variant="loop"
-              width={260}
-              height={90}
-              className="absolute -top-4 -left-6"
-            />
-            <Squiggle
-              color="#E3ED43"
-              opacity={0.18}
-              variant="wave"
-              width={260}
-              height={90}
-              className="absolute -bottom-2 -right-6"
-            />
             <div className="relative z-10">
               <PhoneMockup
                 screenshotSrc="/screenshots/home.png"
@@ -183,14 +156,6 @@ export default function HeroBento() {
               gridRow: "1 / 2",
             }}
           >
-            <Squiggle
-              color="#21263F"
-              opacity={0.1}
-              variant="scribble"
-              width={180}
-              height={60}
-              className="absolute top-0 left-0"
-            />
             {/* Cool yellow mascot peeks corner */}
             <div className="absolute -top-2 -right-2 z-0 opacity-80">
               <ImageWithFallback
@@ -233,14 +198,6 @@ export default function HeroBento() {
               gridRow: "2 / 3",
             }}
           >
-            <Squiggle
-              color="#00A4FA"
-              opacity={0.15}
-              variant="wave"
-              width={200}
-              height={80}
-              className="absolute inset-0"
-            />
             <span
               className="inline-flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-full text-center relative z-10 shadow-sm"
               style={{

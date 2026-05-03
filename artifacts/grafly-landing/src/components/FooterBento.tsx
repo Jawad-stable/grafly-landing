@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Twitter, Instagram, Linkedin } from "lucide-react";
 import { useLang } from "@/hooks/useLang";
 import ImageWithFallback from "./ImageWithFallback";
-import Squiggle, { SquigglePattern } from "./Squiggle";
+import Squiggle from "./Squiggle";
 
 function StoreBadge({ label, icon }: { label: string; icon: "apple" | "google" }) {
   return (
@@ -47,22 +47,13 @@ export default function FooterBento() {
               minHeight: 280,
             }}
           >
-            <SquigglePattern color="#00A4FA" opacity={0.1} size={70} />
             <Squiggle
-              color="#FF7BD0"
-              opacity={0.25}
+              color="#00A4FA"
+              opacity={0.18}
               variant="loop"
-              width={320}
-              height={110}
+              width={300}
+              height={100}
               className="absolute -top-2 left-0"
-            />
-            <Squiggle
-              color="#E3ED43"
-              opacity={0.2}
-              variant="scribble"
-              width={280}
-              height={90}
-              className="absolute -bottom-2 right-0"
             />
 
             <div className="relative z-10 flex-1">
@@ -98,16 +89,6 @@ export default function FooterBento() {
             className="bento-card p-8 flex flex-col justify-between relative overflow-hidden"
             style={{ background: "linear-gradient(160deg, #00A4FA 0%, #0090E0 100%)", color: "#21263F" }}
           >
-            <SquigglePattern color="#21263F" opacity={0.08} size={50} />
-            <Squiggle
-              color="#21263F"
-              opacity={0.15}
-              variant="loop"
-              width={200}
-              height={70}
-              className="absolute -bottom-2 -right-4"
-            />
-
             {/* Cool yellow mascot */}
             <div className="absolute top-4 end-4 z-10 opacity-95" style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}>
               <ImageWithFallback

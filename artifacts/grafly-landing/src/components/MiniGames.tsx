@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useLang } from "@/hooks/useLang";
-import Squiggle, { SquigglePattern } from "./Squiggle";
-import ImageWithFallback from "./ImageWithFallback";
 
 /* ── Color Match ─────────────────────────────────────────────── */
 const SWATCHES = ["#00A4FA", "#E3ED43", "#FF7BD0", "#7B5CFF"];
@@ -178,8 +176,6 @@ const GAME_CARDS = [
   {
     bg: "#FF7BD0",
     text: "#21263F",
-    squiggle: "loop" as const,
-    mascot: "/mascot/correct.png",
     getTitle: (t: ReturnType<typeof useLang>["t"]) => t.games.colorMatch.title,
     getBody: (t: ReturnType<typeof useLang>["t"]) => t.games.colorMatch.body,
     Demo: ColorMatch,
@@ -187,8 +183,6 @@ const GAME_CARDS = [
   {
     bg: "linear-gradient(160deg, #21263F 0%, #2D3354 100%)",
     text: "#F5F6FA",
-    squiggle: "wave" as const,
-    squiggleColor: "#00A4FA",
     getTitle: (t: ReturnType<typeof useLang>["t"]) => t.games.contrastTuner.title,
     getBody: (t: ReturnType<typeof useLang>["t"]) => t.games.contrastTuner.body,
     Demo: ContrastTuner,
@@ -196,8 +190,6 @@ const GAME_CARDS = [
   {
     bg: "#E3ED43",
     text: "#21263F",
-    squiggle: "scribble" as const,
-    mascot: "/mascot/cool_yellow.png",
     getTitle: (t: ReturnType<typeof useLang>["t"]) => t.games.paletteBuilder.title,
     getBody: (t: ReturnType<typeof useLang>["t"]) => t.games.paletteBuilder.body,
     Demo: PaletteBuilder,
@@ -205,7 +197,6 @@ const GAME_CARDS = [
   {
     bg: "#00A4FA",
     text: "#21263F",
-    squiggle: "spiral" as const,
     getTitle: (t: ReturnType<typeof useLang>["t"]) => t.games.dragMatch.title,
     getBody: (t: ReturnType<typeof useLang>["t"]) => t.games.dragMatch.body,
     Demo: DragMatch,
@@ -236,7 +227,7 @@ export default function MiniGames() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {GAME_CARDS.map(({ bg, text, getTitle, getBody, Demo, squiggle, squiggleColor, mascot }, i) => (
+          {GAME_CARDS.map(({ bg, text, getTitle, getBody, Demo }, i) => (
             <motion.div
               key={i}
               className="bento-card p-6 flex flex-col gap-4 relative overflow-hidden"
@@ -246,29 +237,6 @@ export default function MiniGames() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <SquigglePattern color={text} opacity={0.05} size={50} />
-              <Squiggle
-                color={squiggleColor ?? text}
-                opacity={0.16}
-                variant={squiggle}
-                width={220}
-                height={80}
-                className="absolute -bottom-3 -right-4"
-              />
-
-              {mascot && (
-                <div className="absolute -top-3 -right-3 opacity-90 z-10" style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}>
-                  <ImageWithFallback
-                    src={mascot}
-                    alt=""
-                    className="mascot-float object-contain"
-                    fallbackBg="transparent"
-                    fallbackTextColor={text}
-                    style={{ width: 60, height: 60 }}
-                  />
-                </div>
-              )}
-
               <div className="relative z-10">
                 <h3 className="font-display text-xl mb-1" style={{ letterSpacing: "-0.02em" }}>
                   {getTitle(t)}

@@ -5,6 +5,8 @@ interface PhoneMockupProps {
   screenshotAlt: string;
   className?: string;
   tiltOnHover?: boolean;
+  width?: number;
+  height?: number;
 }
 
 export default function PhoneMockup({
@@ -12,13 +14,17 @@ export default function PhoneMockup({
   screenshotAlt,
   className = "",
   tiltOnHover = false,
+  width = 180,
+  height = 360,
 }: PhoneMockupProps) {
+  const notchW = Math.round(width * 0.34);
+  const notchH = Math.max(10, Math.round(width * 0.078));
   return (
     <div
       className={`phone-frame mx-auto ${className}`}
       style={{
-        width: 180,
-        height: 360,
+        width,
+        height,
         transition: tiltOnHover ? "transform 300ms ease" : undefined,
       }}
       onMouseEnter={
@@ -37,21 +43,19 @@ export default function PhoneMockup({
           : undefined
       }
     >
-      {/* notch */}
       <div
         style={{
           position: "absolute",
-          top: 10,
+          top: Math.round(width * 0.055),
           left: "50%",
           transform: "translateX(-50%)",
-          width: 60,
-          height: 14,
+          width: notchW,
+          height: notchH,
           borderRadius: 100,
           background: "#000",
           zIndex: 2,
         }}
       />
-      {/* screen */}
       <ImageWithFallback
         src={screenshotSrc}
         alt={screenshotAlt}
